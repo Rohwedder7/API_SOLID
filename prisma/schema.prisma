@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  MEMBER
+  ADMIN
+}
+
+model User {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  email         String   @unique
+  password_hash String
+  role          Role     @default(MEMBER)
+  created_at    DateTime @default(now())
+
+  checkIns CheckIn[]
+
+  @@map("users")
+}
+
+model CheckIn {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at   DateTime  @default(now())
+  validated_at DateTime?
+  user_id      String    @db.Uuid
+  gym_id       String    @db.Uuid
+
+  user User @relation(fields: [user_id], references: [id])
+  gym  Gym  @relation(fields: [gym_id], references: [id])
+
+  @@map("check_ins")
+}
+
+model Gym {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String
+  description String
+  phone       String
+  latitude    Decimal
+  longitude   Decimal
+
+  checkIns CheckIn[]
+
+  @@map("gyms")
+}
