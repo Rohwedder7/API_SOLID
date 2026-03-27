@@ -77,6 +77,9 @@ jobs:
             }
           })();"
 
+      - name: Apply database migrations
+        run: npx prisma migrate deploy
+
       - name: Run E2E tests
         run: npm run test:e2e
 

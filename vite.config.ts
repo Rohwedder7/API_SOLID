@@ -36,6 +36,7 @@ export default defineConfig({
           name: 'e2e',
           dir: 'src/http/controllers',
           include: ['**/*.spec.ts'],
+          fileParallelism: false,
           environment:
             './prisma/vitest-enviroment-prisma/prisma-test-enviroment.ts',
         },
