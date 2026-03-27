@@ -47,8 +47,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "generated/prisma": ["generated/prisma/index.d.ts"],
-      "generated/prisma/client": ["generated/prisma/client.d.ts"],
+      "generated/prisma": ["generated/prisma/index"],
+      "generated/prisma/client": ["generated/prisma/client"],
       "generated/*": ["generated/*"]
     }
   },

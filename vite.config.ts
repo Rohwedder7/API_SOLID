@@ -2,11 +2,14 @@ import { defineConfig } from 'vitest/config'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { resolve } from 'node:path'
 
+const rootDir = process.cwd()
+
 export default defineConfig({
   plugins: [tsconfigPaths()],
   resolve: {
     alias: {
-      '@': resolve(process.cwd(), 'src'),
+      '@': resolve(rootDir, 'src'),
+      generated: resolve(rootDir, 'generated'),
     },
   },
   build: {
