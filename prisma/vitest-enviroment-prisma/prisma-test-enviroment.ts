@@ -16,7 +16,7 @@ function gerenateTestDatabaseUrl(schema: string) {
 
 export default <Environment>{
   name: 'prisma-test-environment',
-  transformMode: 'ssr',
+  viteEnvironment: 'ssr',
   async setup() {
     // Criar o banco de testes
     const schema = randomUUID()

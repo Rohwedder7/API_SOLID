@@ -12,6 +12,7 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node build/server.cjs",
+    "pretest:e2e": "npm run prisma:generate",
     "pretest:unit": "npm run prisma:generate",
     "test:e2e": "vitest run --project e2e",
     "test:unit": "vitest run --project unit",
